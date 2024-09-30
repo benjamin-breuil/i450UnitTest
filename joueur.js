@@ -7,11 +7,13 @@ class Joueur {
   }
 
   deplacer(nouvellePosition, plateau) {
-    this.position = nouvellePosition;
-    if (this.position >= plateau.taille) {
-      this.position = this.position % plateau.taille;
+    if (nouvellePosition >= plateau.taille) {
       this.argent += 200;  // Passage par la case départ
+    } else if (nouvellePosition < this.position) {
+      // Si la nouvelle position est inférieure à l'ancienne, le joueur a passé la case départ
+      this.argent += 200;
     }
+    this.position = nouvellePosition % plateau.taille;  // Réinitialiser la position en cas de dépassement
   }
 
   payer(montant) {
